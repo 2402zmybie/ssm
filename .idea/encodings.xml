@@ -11,6 +11,8 @@
     <file url="file://$PROJECT_DIR$/ssm_service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ssm_utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ssm_utils/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm_web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm_web/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
