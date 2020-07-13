@@ -1,5 +1,6 @@
 package com.hr.ssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.hr.ssm.dao.IOrdersDao;
 import com.hr.ssm.domain.Orders;
 import com.hr.ssm.service.IOrdersService;
@@ -17,7 +18,9 @@ public class OrdersServiceImpl implements IOrdersService {
     private IOrdersDao ordersDao;
 
     @Override
-    public List<Orders> findAll() throws Exception {
+    public List<Orders> findAll(int page, int size) throws Exception {
+        //参数pageNum是页码值, 参数pageSize代表是每页显示条数
+        PageHelper.startPage(page,size);
         return ordersDao.findAll();
     }
 }
