@@ -9,12 +9,20 @@ import java.util.List;
 
 @Repository
 public interface IProductDao {
+
+    /**
+     * 根据id查产品信息
+     * @param id
+     * @return
+     */
+    @Select("select * from product where id=#{id}")
+    public Product findById(String id) throws Exception;
+
     /**
      * 查询所有产品信息
      * @return
      * @throws Exception
      */
-
     @Select("select * from product")
     List<Product> findAll() throws Exception;
 
