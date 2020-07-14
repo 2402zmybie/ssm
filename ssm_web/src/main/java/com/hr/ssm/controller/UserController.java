@@ -5,6 +5,7 @@ import com.hr.ssm.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -19,7 +20,24 @@ public class UserController {
     @RequestMapping("/findAll.do")
     public ModelAndView findAll() throws Exception {
         ModelAndView mv = new ModelAndView();
-        List<UserInfo> userInfos = userService.findAll();
+        List<UserInfo> userList = userService.findAll();
+        mv.setViewName("user-list");
+        mv.addObject("userList",userList);
+        return mv;
+    }
+
+    @RequestMapping("/save.do")
+    public String save(UserInfo userInfo) throws Exception{
+        userService.save(userInfo);
+        return "redirect:findAll.do";
+    }
+
+    @RequestMapping("/findById.do")
+    public ModelAndView findById(String id) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        UserInfo userInfo = userService.findById(id);
+        mv.addObject("user",userInfo);
+        mv.setViewName("user-show");
         return mv;
     }
 }

@@ -2,6 +2,9 @@ package com.hr.ssm.domain;
 
 import java.util.List;
 
+/**
+ * 与数据库的users对应的
+ */
 public class UserInfo {
     private String id;
     private String username;
@@ -62,6 +65,11 @@ public class UserInfo {
     }
 
     public String getStatusStr() {
+        if(0 == status) {
+            statusStr = "未开启";
+        }else if(1 == status) {
+            statusStr = "开启";
+        }
         return statusStr;
     }
 

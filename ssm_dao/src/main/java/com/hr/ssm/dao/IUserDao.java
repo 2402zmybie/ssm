@@ -1,12 +1,43 @@
 package com.hr.ssm.dao;
 
 import com.hr.ssm.domain.UserInfo;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 public interface IUserDao {
 
-    @Select("select * from user")
+    //用于登录
+    @Select("select * from users where username=#{username}")
+    @Results({
+            @Result(id = true,property = "id",column = "id"),
+            @Result(property = "username",column = "username"),
+            @Result(property = "email",column = "email"),
+            @Result(property = "password",column = "password"),
+            @Result(property = "phoneNum",column = "phoneNum"),
+            @Result(property = "status",column = "status"),
+            @Result(property = "roles",column = "id",javaType = List.class,many = @Many(select = "com.hr.ssm.dao.IRoleDao.findRoleByUserId"))
+    })
+    UserInfo findByUsername(String username) throws Exception;
+
+
+    @Select("select * from users")
     List<UserInfo> findAll() throws Exception;
+
+    @Insert("insert into users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status})")
+    void save(UserInfo userInfo);
+
+
+    //用于用户管理 --详情
+    @Select("select * from users where id=#{id}")
+    @Results({
+            @Result(id = true,property = "id",column = "id"),
+            @Result(property = "username",column = "username"),
+            @Result(property = "email",column = "email"),
+            @Result(property = "password",column = "password"),
+            @Result(property = "phoneNum",column = "phoneNum"),
+            @Result(property = "status",column = "status"),
+            @Result(property = "roles",column = "id",javaType = List.class,many = @Many(select = "com.hr.ssm.dao.IRoleDao.findRoleByUserId"))
+    })
+    UserInfo findById(String id);
 }
