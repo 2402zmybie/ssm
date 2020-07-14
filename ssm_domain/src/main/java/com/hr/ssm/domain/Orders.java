@@ -67,9 +67,9 @@ public class Orders {
 
     public String getOrderStatusStr() {
         if(0 == orderStatus) {
-            orderTimeStr = "未支付";
+            orderStatusStr = "未支付";
         }else if(1 == orderStatus) {
-            orderTimeStr = "已支付";
+            orderStatusStr = "已支付";
         }
         return orderStatusStr;
     }
