@@ -14,3 +14,15 @@ spring security:
 角色关联权限:
      1 先查询出这个角色没有的权限信息
      2 关联角色与权限信息,主要就是向role_permission表中插入数据
+
+
+使用JSR-250注解进行权限控制
+1 spring-security.xml 中开启 <security:global-method-security jsr250-annotations="enabled"></security:global-method-security>
+2 使用 @RolesAllowed注解: 表示访问对应方法时所应该具有的角色
+    @RolesAllowed({"USER","ADMIN"}):
+3 导入坐标:
+            <dependency>
+             <groupId>javax.annotation</groupId>
+             <artifactId>jsr250-api</artifactId>
+             <version>1.0</version>
+            </dependency>
