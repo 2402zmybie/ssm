@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @RequestMapping("/findAll.do")
-    @RolesAllowed("ADMIN")
+//    @RolesAllowed("ADMIN")
     public ModelAndView findAll() throws Exception {
         ModelAndView mv = new ModelAndView();
         List<Product> products = productService.findAll();

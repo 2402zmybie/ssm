@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.hr.ssm.domain.Orders;
 import com.hr.ssm.service.IOrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +34,7 @@ public class OrdersController {
 //    }
 
     @RequestMapping("/findAll.do")
+//    @Secured("ROLE_ADMIN")
     public ModelAndView findAll(@RequestParam(value = "page",required = true,defaultValue = "1") int page,@RequestParam(value = "size",required = true,defaultValue = "4") int size) throws Exception {
         ModelAndView mv = new ModelAndView();
         List<Orders> ordersList = ordersService.findAll(page,size);
