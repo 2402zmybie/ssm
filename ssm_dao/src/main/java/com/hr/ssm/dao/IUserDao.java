@@ -1,5 +1,6 @@
 package com.hr.ssm.dao;
 
+import com.hr.ssm.domain.Role;
 import com.hr.ssm.domain.UserInfo;
 import org.apache.ibatis.annotations.*;
 
@@ -40,4 +41,13 @@ public interface IUserDao {
             @Result(property = "roles",column = "id",javaType = List.class,many = @Many(select = "com.hr.ssm.dao.IRoleDao.findRoleByUserId"))
     })
     UserInfo findById(String id);
+
+
+    @Select("select * from role where id not in (select roleId from users_role where userId=#{id})")
+    List<Role> findOtherRoles(String id);
+
+    //给用户插入角色
+    //注意 当有多个变量作为sql字段的时候, 要使用@Param 一一对应
+    @Insert("insert into users_role (userId,roleId) values (#{userId},#{roleId})")
+    void addRoleToUser(@Param("userId") String userId, @Param("roleId") String roleId);
 }

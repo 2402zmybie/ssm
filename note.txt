@@ -3,3 +3,14 @@ spring security:
     UserDetailsService来完成操作。
     一般的我们在Controller写一个UserController, 来调用UserService方法,
     但使用到了spring security之后, controller层是spring security完成, 它来指定我们登录的页面和用户名,密码信息
+
+
+用户
+    用户和角色 多对多 users_role
+    角色和权限 多对多  role_permission (权限表中有角色能访问的路径)
+用户关联角色操作:
+    1 先查询出这个用户没有的角色信息
+    2 关联用户与角色信息主要就是向user_role表中插入数据
+角色关联权限:
+     1 先查询出这个角色没有的权限信息
+     2 关联角色与权限信息,主要就是向role_permission表中插入数据
